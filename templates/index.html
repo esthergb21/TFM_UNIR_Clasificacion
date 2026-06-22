@@ -12,30 +12,30 @@
         <div class="row justify-content-center">
             <div class="col-md-8 text-center mb-4">
                 <h1 class="fw-bold text-primary">Clasificación Automática de Enfermedades Dermatológicas</h1>
-                <p class="text-muted">Análisis de patrones visuales mediante Inteligencia Artificial (TFE - UNIR)</p>
+                <p class="text-muted">Análisis de patrones visuales mediante Inteligencia Artificial (TFM - UNIR)</p>
             </div>
         </div>
 
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card shadow-sm p-4 mb-4">
-                    <h5 class="card-title mb-3">Subir Imagen de la Lesión</h5>
+                    <h5 class="card-title mb-3">Subir imagen de la lesión</h5>
                     <form action="/" method="POST" enctype="multipart/form-data">
                         
                         <div class="mb-3">
-                            <label for="file" class="form-label">Selecciona una imagen dermatológica:</label>
+                            <label for="file" class="form-label">Selecciona una imagen:</label>
                             <input class="form-control" type="file" id="file" name="file" accept="image/*" required>
                         </div>
 
                         <div class="mb-3">
-                            <label for="modelo" class="form-label">Selecciona la Arquitectura de IA:</label>
+                            <label for="modelo" class="form-label">Selecciona el modelo:</label>
                             <select class="form-cols form-select" id="modelo" name="modelo">
                                 <option value="resnet">ResNet50</option>
                                 <option value="efficientnet">EfficientNet50</option>
                             </select>
                         </div>
 
-                        <button type="submit" class="btn btn-primary w-100">Analizar Lesión</button>
+                        <button type="submit" class="btn btn-primary w-100">Analizar lesión</button>
                     </form>
                 </div>
             </div>
@@ -48,8 +48,8 @@
                         <img src="{{ imagen_subida }}" class="img-fluid rounded shadow-sm" style="max-height: 200px;" alt="Lesión analizada">
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><strong>Modelo utilizado:</strong> {{ modelo.upper() }}</li>
                         <li class="list-group-item"><strong>Diagnóstico estimado:</strong> <span class="text-danger fw-bold">{{ prediccion }}</span></li>
+                        <li class="list-group-item"><strong>Modelo utilizado:</strong> {{ modelo.upper() }}</li>
                         <li class="list-group-item"><strong>Nivel de Confianza:</strong> {{ confianza }}%</li>
                     </ul>
                 </div>
