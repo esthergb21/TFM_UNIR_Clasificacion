@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template, request, redirect
 from modelo_efficientnet import predecir_efficientnet
+from modelo_resnet50 import predecir_resnet 
 
 app = Flask(__name__)
 
@@ -40,7 +41,8 @@ def index():
                 idx_pred, confianza = predecir_efficientnet(filepath)
                 resultado_prediccion = CLASES[idx_pred]
             else:
-                resultado_prediccion, confianza = "Modelo ResNet no conectado aún", 0.0
+                idx_pred, confianza = predecir_resnet(filepath)
+                resultado_prediccion = CLASES[idx_pred]
             
             return render_template('index.html', 
                                    imagen_subida=filepath, 
