@@ -44,9 +44,18 @@
             <div class="col-md-6">
                 <div class="card shadow-sm p-4 border-success">
                     <h5 class="card-title text-success mb-3">Resultado del Análisis</h5>
-                    <div class="text-center mb-3">
-                        <img src="{{ imagen_subida }}" class="img-fluid rounded shadow-sm" style="max-height: 200px;" alt="Lesión analizada">
+                    
+                    <div class="row g-2 mb-3 text-center">
+                        <div class="col-6">
+                            <p class="small text-muted mb-1">Imagen Original</p>
+                            <img src="{{ imagen_subida }}" class="img-fluid rounded shadow-sm" style="max-height: 180px; object-fit: cover;" alt="Lesión analizada">
+                        </div>
+                        <div class="col-6">
+                            <p class="small text-muted mb-1">Mapa de Calor (Grad-CAM)</p>
+                            <img src="{{ url_for('static', filename='uploads/' + imagen_gradcam) }}" class="img-fluid rounded shadow-sm" style="max-height: 180px; object-fit: cover;" alt="Mapa de calor Grad-CAM">
+                        </div>
                     </div>
+
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"><strong>Diagnóstico estimado:</strong> <span class="text-danger fw-bold">{{ prediccion }}</span></li>
                         <li class="list-group-item"><strong>Modelo utilizado:</strong> {{ modelo.upper() }}</li>
