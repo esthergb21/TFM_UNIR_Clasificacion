@@ -1,15 +1,11 @@
 import os
 from flask import Flask, render_template, request, redirect
 from modelo_efficientnet import predecir_efficientnet
-from modelo_resnet50 import predecir_resnet 
+from modelo_resnet50 import predecir_resnet
 from gradcam import generar_mapa_gradcam
 
 app = Flask(__name__)
-
 UPLOAD_FOLDER = 'static/uploads'
-if not os.path.exists(UPLOAD_FOLDER):
-    os.makedirs(UPLOAD_FOLDER)
-
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 CLASES = {
@@ -45,7 +41,11 @@ def index():
                 idx_pred, confianza = predecir_resnet(filepath)
                 resultado_prediccion = CLASES[idx_pred]
             
-            nombre_gradcam = generar_mapa_gradcam(filepath, modelo_seleccionado, idx_pred, app.config['UPLOAD_FOLDER'], file.filename)
+            nombre_gradcam = generar_mapa_gradcam(filepath,
+                                                  modelo_seleccionado,
+                                                  idx_pred,
+                                                  app.config['UPLOAD_FOLDER'],
+                                                  file.filename)
             
             return render_template('index.html', 
                                    imagen_subida=filepath, 

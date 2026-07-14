@@ -7,7 +7,6 @@ from PIL import Image
 model = models.efficientnet_b0()
 model.classifier[1] = nn.Linear(model.classifier[1].in_features, 7)
 
-# Cambiamos 'modelo_skin.pth' por el nuevo nombre exacto:
 model.load_state_dict(torch.load('pesos_efficientnet.pth', map_location='cpu'))
 model.eval()
 

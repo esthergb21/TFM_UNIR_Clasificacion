@@ -9,11 +9,11 @@ def predecir_resnet(image_path):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     
     # 2. Reconstruir la arquitectura exacta del notebook
-    model = models.resnet50(weights=None) # No descargamos los pesos de ImageNet, usaremos los tuyos
+    model = models.resnet50(weights=None) 
     in_features = model.fc.in_features
     model.fc = nn.Linear(in_features, 7)
     
-    # 3. Cargar tus pesos guardados
+    # 3. Cargar los pesos guardados
     model.load_state_dict(torch.load('pesos_resnet50.pth', map_location=device))
     model = model.to(device)
     model.eval()
@@ -27,7 +27,7 @@ def predecir_resnet(image_path):
     
     # 5. Procesar la imagen
     img = Image.open(image_path).convert('RGB')
-    img_t = val_tx(img).unsqueeze(0).to(device) # Añadimos dimensión de batch
+    img_t = val_tx(img).unsqueeze(0).to(device)
     
     # 6. Predicción e inferencia de confianza
     with torch.no_grad():
